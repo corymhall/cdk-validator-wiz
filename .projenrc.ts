@@ -1,4 +1,5 @@
-import { cdk } from 'projen';
+import { JsonPatch, cdk } from 'projen';
+import { Transform } from 'projen/lib/javascript';
 const project = new cdk.JsiiProject({
   author: 'corymhall',
   authorAddress: '43035978+corymhall@users.noreply.github.com',
@@ -7,10 +8,38 @@ const project = new cdk.JsiiProject({
   name: 'cdk-validator-wiz',
   projenrcTs: true,
   repositoryUrl: 'https://github.com/corymhall/cdk-validator-wiz.git',
+  devDeps: [
+    'aws-cdk-lib@^2.76.0',
+    'jsii@^5.0.0',
+    'jsii-rosetta@^5.0.0',
+    'mock-fs',
+    '@types/mock-fs',
+    '@swc/core',
+    '@swc/jest',
+  ],
+
+  peerDeps: [
+    'aws-cdk-lib@^2.76.0',
+  ],
+  jestOptions: {
+    configFilePath: 'jest.config.json',
+  },
 
   // deps: [],                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
   // devDeps: [],             /* Build dependencies for this module. */
   // packageName: undefined,  /* The "name" in package.json. */
 });
+
+const jestConfig = project.tryFindObjectFile('jest.config.json');
+jestConfig?.patch(JsonPatch.remove('/preset'));
+jestConfig?.patch(JsonPatch.remove('/globals'));
+jestConfig?.patch(JsonPatch.add('/transform', {
+  '^.+\\.(t|j)sx?$': new Transform('@swc/jest'),
+}));
+const bundleTask = project.addTask('bundle-wiz', {
+  exec: 'ts-node projenrc/bundle-wiz.ts',
+});
+project.defaultTask?.spawn(bundleTask);
 project.synth();
+

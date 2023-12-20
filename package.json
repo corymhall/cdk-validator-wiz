@@ -4,9 +4,14 @@
     "type": "git",
     "url": "https://github.com/corymhall/cdk-validator-wiz.git"
   },
+  "bin": {
+    "darwin": "bin/darwin",
+    "linux": "bin/linux"
+  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
+    "bundle-wiz": "npx projen bundle-wiz",
     "clobber": "npx projen clobber",
     "compat": "npx projen compat",
     "compile": "npx projen compile",
@@ -34,10 +39,14 @@
     "organization": false
   },
   "devDependencies": {
+    "@swc/core": "^1.3.99",
+    "@swc/jest": "^0.2.29",
     "@types/jest": "^29.5.8",
+    "@types/mock-fs": "^4.13.4",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
+    "aws-cdk-lib": "2.76.0",
     "constructs": "^10.0.0",
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -49,6 +58,7 @@
     "jsii-docgen": "^10.1.4",
     "jsii-pacmak": "^1.92.0",
     "jsii-rosetta": "~5.0.0",
+    "mock-fs": "^5.2.0",
     "npm-check-updates": "^16",
     "projen": "^0.77.0",
     "standard-version": "^9",
@@ -56,49 +66,12 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
+  "peerDependencies": {
+    "aws-cdk-lib": "^2.76.0"
+  },
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "version": "0.0.0",
-  "jest": {
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/(test|src)/**/*(*.)@(spec|test).ts?(x)"
-    ],
-    "clearMocks": true,
-    "collectCoverage": true,
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "clover",
-      "cobertura",
-      "text"
-    ],
-    "coverageDirectory": "coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "watchPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": "test-reports"
-        }
-      ]
-    ],
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.dev.json"
-      }
-    }
-  },
   "types": "lib/index.d.ts",
   "stability": "stable",
   "jsii": {
