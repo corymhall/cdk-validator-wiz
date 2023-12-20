@@ -153,7 +153,7 @@ describe('WizValidator', () => {
     });
 
     // THEN
-    expect(res.success).toEqual(true);
+    expect(res.success).toEqual(false);
     expect(res.violations).toEqual([{
       severity: 'HIGH',
       description: "S3 Bucket 'Block Public Access' settings should block the creation of new public ACLs",

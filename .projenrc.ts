@@ -1,11 +1,16 @@
-import { JsonPatch, cdk } from 'projen';
+import { JsonPatch, ReleasableCommits, cdk } from 'projen';
 import { Transform } from 'projen/lib/javascript';
 const project = new cdk.JsiiProject({
   author: 'corymhall',
   authorAddress: '43035978+corymhall@users.noreply.github.com',
   defaultReleaseBranch: 'main',
+  releasableCommits: ReleasableCommits.featuresAndFixes(),
+  releaseToNpm: false,
   jsiiVersion: '~5.0.0',
   name: 'cdk-validator-wiz',
+  githubOptions: {
+    mergify: false,
+  },
   projenrcTs: true,
   repositoryUrl: 'https://github.com/corymhall/cdk-validator-wiz.git',
   devDeps: [
@@ -23,6 +28,10 @@ const project = new cdk.JsiiProject({
   ],
   jestOptions: {
     configFilePath: 'jest.config.json',
+  },
+  publishToGo: {
+    moduleName: 'github.com/corymhall/cdk-validator-wiz',
+    gitBranch: 'go',
   },
 
   // deps: [],                /* Runtime dependencies of this module. */
