@@ -4,10 +4,6 @@
     "type": "git",
     "url": "https://github.com/corymhall/cdk-validator-wiz.git"
   },
-  "bin": {
-    "darwin": "bin/darwin",
-    "linux": "bin/linux"
-  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
