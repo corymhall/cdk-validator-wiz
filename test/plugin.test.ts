@@ -3,7 +3,8 @@ import * as os from 'os';
 import * as path from 'path';
 import mock from 'mock-fs';
 import { WizValidator } from '../src/plugin';
-import { Result, ScanState, ScanVerdict, Severity, WizScan } from '../src/scan';
+import { Result, ScanState, ScanVerdict, WizScan } from '../src/scan';
+import { Severity } from '../src/types';
 import * as utils from '../src/utils';
 
 const tmpDir = fs.realpathSync(os.tmpdir());
@@ -71,7 +72,7 @@ describe('WizValidator', () => {
     // THEN
     expect(execMock).toHaveBeenCalledTimes(1);
     expect(execMock).toHaveBeenNthCalledWith(1, expect.arrayContaining([
-      expect.stringMatching(/.*bin\/\w+\/\w+\/wizcli$/),
+      expect.stringMatching(/^wizcli$/),
       'iac', 'scan',
       '--output', `${path.join(tmpDir, 'wiz.json')},json,false,default`,
       '--format', 'json',

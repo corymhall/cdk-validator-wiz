@@ -1,3 +1,4 @@
+import { Severity } from './types';
 
 export interface WizScan {
   id: string;
@@ -75,13 +76,6 @@ interface ScanStatistics {
   queriesExecutedFailed: number;
 }
 
-export enum Severity {
-  MEDIUM = 'MEDIUM',
-  LOW = 'LOW',
-  INFO = 'INFO',
-  HIGH = 'HIGH',
-  CRITICAL = 'CRITICAL',
-}
 
 export interface Match {
   rule: MatchRule;
