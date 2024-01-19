@@ -7,7 +7,8 @@ import {
   PolicyViolationBeta1,
   PolicyValidationPluginReportBeta1,
 } from 'aws-cdk-lib';
-import { ScanState, Severity, WizScan } from './scan';
+import { ScanState, WizScan } from './scan';
+import { Severity } from './types';
 import { exec } from './utils';
 
 export interface WizValidatorProps {
@@ -17,7 +18,7 @@ export interface WizValidatorProps {
    *
    * @default - Severity.MEDIUM
    */
-  reportOnSeverity?: Severity;
+  readonly reportOnSeverity?: Severity;
 
   /**
    * The severity level to fail on.
@@ -28,7 +29,7 @@ export interface WizValidatorProps {
    *
    * @default - the default configured in wiz (probably Severity.CRITICAL)
    */
-  failOnSeverity?: Severity;
+  readonly failOnSeverity?: Severity;
 }
 
 export class WizValidator implements IPolicyValidationPluginBeta1 {
@@ -42,29 +43,9 @@ export class WizValidator implements IPolicyValidationPluginBeta1 {
 
   constructor(props?: WizValidatorProps) {
     this.name = 'cdk-validator-wiz';
-    const osPlatform = os.platform();
-    const osArch = os.arch();
     this.tmpDir = fs.realpathSync(os.tmpdir());
 
-    if (!['linux', 'darwin'].includes(osPlatform)) {
-      throw new Error(`${osPlatform} not supported, must be either 'darwin' or 'linux'`);
-    }
-
-    let arch = '';
-    switch (osArch) {
-      case 'x64':
-        arch = 'amd64';
-        break;
-      case 'arm64':
-        arch = 'arm64';
-        break;
-    }
-
-    if (!arch) {
-      throw new Error(`${osArch} not supported, must be either 'arm64' or x86_64`);
-    }
-
-    this.wiz = path.join(__dirname, '..', 'bin', osPlatform, osArch, 'wizcli');
+    this.wiz = 'wizcli';
 
     const reportOnSeverity = props?.reportOnSeverity ?? Severity.MEDIUM;
     switch (reportOnSeverity) {

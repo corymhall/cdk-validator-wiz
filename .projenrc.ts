@@ -6,7 +6,7 @@ const project = new cdk.JsiiProject({
   defaultReleaseBranch: 'main',
   releasableCommits: ReleasableCommits.featuresAndFixes(),
   releaseToNpm: false,
-  jsiiVersion: '~5.0.0',
+  jsiiVersion: '~5.3.0',
   name: 'cdk-validator-wiz',
   githubOptions: {
     mergify: false,
@@ -46,9 +46,5 @@ jestConfig?.patch(JsonPatch.remove('/globals'));
 jestConfig?.patch(JsonPatch.add('/transform', {
   '^.+\\.(t|j)sx?$': new Transform('@swc/jest'),
 }));
-const bundleTask = project.addTask('bundle-wiz', {
-  exec: 'ts-node projenrc/bundle-wiz.ts',
-});
-project.defaultTask?.spawn(bundleTask);
 project.synth();
 
