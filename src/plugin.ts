@@ -137,9 +137,9 @@ export class WizValidator implements IPolicyValidationPluginBeta1 {
         violations.push({
           violatingResources: match.matches.flatMap(m => {
             return {
-              locations: [`${m.lineNumber}`],
+              locations: [m.resourceName],
               resourceLogicalId: m.resourceName.split('.')[1],
-              templatePath: m.filename,
+              templatePath: m.fileName,
             };
           }),
           severity: match.severity,

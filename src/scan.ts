@@ -93,7 +93,7 @@ export interface MatchRule {
 export interface RuleMatch {
   failedPolicies: any[]; // TODO: not sure what this type is yet. Don't have any Critical policies
   resourceName: string;
-  filename: string;
+  fileName: string;
   lineNumber: number;
   expected: string;
   found: string;

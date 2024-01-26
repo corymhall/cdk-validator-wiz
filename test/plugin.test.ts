@@ -132,7 +132,7 @@ describe('WizValidator', () => {
                 matches: [{
                   expected: "'PublicAccessBlockConfiguration' should be defined%!(EXTRA string=MyBucket)",
                   failedPolicies: [],
-                  filename: 'cdk.out/template-path-1',
+                  fileName: 'cdk.out/template-path-1',
                   found: "'PublicAccessBlockConfiguration' is not defined%!(EXTRA string=MyBucket)",
                   lineNumber: 5,
                   resourceName: 'Resources.MyBucket.Properties',
@@ -163,7 +163,7 @@ describe('WizValidator', () => {
         ruleId: 'e6619a6a-2e36-471f-af42-081e9ad5eaee',
       },
       violatingResources: [{
-        locations: ['5'],
+        locations: ['Resources.MyBucket.Properties'],
         resourceLogicalId: 'MyBucket',
         templatePath: 'cdk.out/template-path-1',
       }],
