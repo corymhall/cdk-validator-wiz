@@ -1,8 +1,18 @@
 import { JsonPatch, ReleasableCommits, cdk } from 'projen';
-import { Transform } from 'projen/lib/javascript';
+import { Transform, UpgradeDependenciesSchedule } from 'projen/lib/javascript';
 const project = new cdk.JsiiProject({
   author: 'corymhall',
   authorAddress: '43035978+corymhall@users.noreply.github.com',
+  depsUpgradeOptions: {
+    workflowOptions: {
+      labels: ['auto-approve'],
+      schedule: UpgradeDependenciesSchedule.WEEKLY,
+    },
+  },
+  autoApproveOptions: {
+    label: 'auto-approve',
+    allowedUsernames: ['corymhall'],
+  },
   defaultReleaseBranch: 'main',
   releasableCommits: ReleasableCommits.featuresAndFixes(),
   releaseToNpm: true,
