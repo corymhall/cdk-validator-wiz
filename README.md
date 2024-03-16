@@ -22,7 +22,7 @@ CDK Validator Plugin for [Wiz](https://www.wiz.io/)
 ### TypeScript/JavaScript
 
 ```bash
-npm install @cdklabs/cdk-validator-cfnguard
+npm install cdk-validator-wiz
 ```
 
 
