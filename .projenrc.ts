@@ -5,7 +5,7 @@ const project = new cdk.JsiiProject({
   authorAddress: '43035978+corymhall@users.noreply.github.com',
   defaultReleaseBranch: 'main',
   releasableCommits: ReleasableCommits.featuresAndFixes(),
-  releaseToNpm: false,
+  releaseToNpm: true,
   jsiiVersion: '~5.3.0',
   name: 'cdk-validator-wiz',
   githubOptions: {
