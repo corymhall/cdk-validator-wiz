@@ -35,13 +35,13 @@
     "organization": false
   },
   "devDependencies": {
-    "@swc/core": "^1.4.8",
+    "@swc/core": "^1.5.25",
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.12",
     "@types/mock-fs": "^4.13.4",
     "@types/node": "^18",
-    "@typescript-eslint/eslint-plugin": "^6",
-    "@typescript-eslint/parser": "^6",
+    "@typescript-eslint/eslint-plugin": "^7",
+    "@typescript-eslint/parser": "^7",
     "aws-cdk-lib": "2.76.0",
     "constructs": "^10.0.0",
     "eslint": "^8",
@@ -50,22 +50,25 @@
     "jest": "^29.7.0",
     "jest-junit": "^15",
     "jsii": "~5.3.0",
-    "jsii-diff": "^1.95.0",
-    "jsii-docgen": "^10.3.23",
-    "jsii-pacmak": "^1.95.0",
+    "jsii-diff": "^1.99.0",
+    "jsii-docgen": "^10.4.14",
+    "jsii-pacmak": "^1.99.0",
     "jsii-rosetta": "~5.3.0",
     "mock-fs": "^5.2.0",
-    "projen": "^0.80.10",
+    "projen": "^0.82.6",
     "standard-version": "^9",
-    "ts-jest": "^29.1.2",
+    "ts-jest": "^29.1.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.76.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "types": "lib/index.d.ts",
   "stability": "stable",
